@@ -1,0 +1,35 @@
+def gpa(marks):
+    if marks<50:
+        gp=0
+        grade="RA"
+    elif marks>=50 and marks <=59:
+        gp=6
+        grade="C"
+    elif marks>=60 and marks <=69:
+        gp=7
+        grade="B+"
+    elif marks>=70 and marks <=79:
+        gp=8
+        grade="B++"
+    elif marks>=80 and marks <=89:
+        gp=9
+        grade="A+"
+    elif marks>=90:
+        gp=10
+        grade="A++"
+    else:
+        gp=None
+        grade="INV"
+        
+    print(grade, gp)
+    return gp
+import sys
+subjects = int(input("enter no. of subjects : "))
+t_credit=t_cgp=0
+for i in range (subjects):
+    subject_name,marks,credit=input("Subject : "),int(input("Marks : ")),int(input("Credit : "))
+    t_credit=t_credit+credit
+    cgp = credit*gpa(marks)
+    t_cgp =t_cgp+cgp
+cgpa=t_cgp/t_credit
+print("Total CGPA : ",cgpa)
