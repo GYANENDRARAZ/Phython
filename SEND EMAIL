@@ -1,0 +1,26 @@
+import smtplib
+import os.path
+
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
+
+
+def send_email(email_recipient,email_subject,email_message,attachment=''):
+    email_sender = 'mamasathyabama@gmail.com'
+    msg = MIMEMultipart()
+    msg['From'] = email_sender
+    msg['To'] = email_recipient
+    msg['Subject'] = email_subject
+    msg.attach(MIMEText(email_message,'Plain'))
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    #server.ehlo()
+    server.login(email_sender,'*****')
+    print("login successfull")
+    text = msg.as_string()
+    server.sendmail(email_sender,email_recipient,text)
+    print("sent")
+send_email('saurabhk33@gmail.com','mail_from_python','kya haal h')
